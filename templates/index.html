@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Charades Game</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Charades Game</h1>
+        <div class="mt-3">
+            <p class="my-0"><b>English</b>: {{ topic_en }}</p>
+            <p class="my-0"><b>Portuguese</b>: {{ topic_pt }}</p>
+        </div>
+        <div class="mt-3">
+            <a href="{{ url_for('update_score', team='team1') }}" class="btn btn-success">Brasil-sil-sil</a>
+            <a href="{{ url_for('update_score', team='team2') }}" class="btn btn-info">U.S.A. U.S.A</a>
+            <a href="{{ url_for('update_score', team='none') }}" class="btn btn-secondary">No One/Ninguem</a>
+            <a href="{{ url_for('reset_score') }}" class="btn btn-danger">Reset Score</a>
+        </div>
+        <hr class="my-4" />
+        <div class="mt-3">
+            <h5>Score/Placar</h5>
+            <p class="my-0">Os Brasileiros: {{ team1_score }}</p>
+            <p class="my-0">U.S.A.: {{ team2_score }}</p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- <script src="{{ url_for('static', filename='js/script.js') }}"></script> -->
+    <script>
+        // loading icon after clicking on a button
+        const buttons = document.querySelectorAll('.btn');
+        buttons.forEach(button => {
+            button.addEventListener('click', () => {
+                button.innerHTML = `
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    Loading...
+                `;
+            });
+        });
+    </script>
+</body>
+</html>
